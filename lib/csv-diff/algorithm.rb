@@ -138,6 +138,8 @@ class CSVDiff
                         id = id_fields(key_fields, right_value)
                         diffs[key] = Diff.new(:update, id.merge!(changes), right_row_id, right_idx)
                         #puts "Change: #{key}"
+                    else
+                        diffs[key] = Diff.new(:unaffected, right_value, right_row_id, right_idx)
                     end
                     if include_moves
                         left_common = left_parent & right_parent
